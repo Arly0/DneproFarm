@@ -1,0 +1,84 @@
+[hidden]
+    display: none
+
+$transition-duration: .25s
+$transition-delay: 0s
+
+@mixin transition
+    transition: all $transition-duration ease-in-out $transition-delay
+
+@mixin transition-in
+    transition: all $transition-duration ease-in $transition-delay
+
+@mixin transition-out
+    transition: all $transition-duration ease-out $transition-delay
+
+@mixin transition-prop($property, $another-duration: $transition-duration)
+    transition: $property $another-duration ease-in-out $transition-delay
+
+@mixin transition-duration($another-duration)
+    transition: all $another-duration ease-in-out $transition-delay
+
+.clearfix:after
+    content: ''
+    display: table
+    clear: both
+
+@mixin clearfix
+    &:after
+        content: ''
+        display: table
+        clear: both
+
+@mixin media_max($media)
+    @media screen and (max-width: $media)
+        @content
+
+@mixin media_min($media)
+    @media screen and (min-width: $media)
+        @content
+
+@mixin media_max_height($media)
+    @media screen and (max-height: $media)
+        @content
+
+@mixin media_min_height($media)
+    @media screen and (min-height: $media)
+        @content
+
+@mixin Tdefault
+    font-size: 18px
+    line-height: 26px
+    color: $dark
+
+@mixin Ttitle
+    font-family: $caL
+    font-size: 30px
+    line-height: 1
+    color: $green
+
+@mixin button
+    font-size: 16px
+    line-height: 24px
+    text-transform: uppercase
+    color: #fff
+    background: $dGreen
+    border: none
+    border-radius: 3px
+    padding: 8px 40px
+
+
+
+
+
+
+
+
+
+$dGreen: #006347;
+$green: #006d45;
+$wGreen: #8fbf21;
+$dark: #1b1c1c;
+$light: #fcfcfc;
+$gray: #ececed;
+$placeholder: #a6a6a7;

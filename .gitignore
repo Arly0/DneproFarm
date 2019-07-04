@@ -1,0 +1,5 @@
+/node_modules
+/dist/js/scripts.min.js.map
+/dist/css/styles.min.css.map
+/package-lock.json
+/.vscode
