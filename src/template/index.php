@@ -1,5 +1,5 @@
 <?php
-    include_once('static/header.php');
+    include_once('header.php');
 ?>
 
 <main>
@@ -7,85 +7,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                <div class="common__title d-flex">
                     <h2 class="diagn__title">
                         НАПРЯМКИ ДІАГНОСТИКИ
                     </h2>
-
+                    <div class="text_block"></div>
+                </div>
                     <div class="d-grid diagn_list">
                         <!-- 1 -->
-                        <div class="diagn_item">
-                            <div class="img_cont"><img src="images/an_chick.png" alt="Птах"></div>
-                            <p>
-                                Птиця
-                            </p>
-                        </div>
 
-                        <!-- 2 -->
-                        <div class="diagn_item">
-                            <div class="img_cont"><img src="images/an_hourse.png" alt="Лоша"></div>
-                            <p>
-                                Коні
-                            </p>
-                        </div>
+                        <?php
+                            if(have_rows('df_diagnositck')):
+                                while(have_rows('df_diagnositck')) : the_row();
+                                ?>
+                                <div class="diagn_item">
+                                <a href="<?php the_sub_field('df_dignostik_link') ?>">
+                                    <div class="img_cont">
+                                    <?php 
+                                    
+                                    $image = get_sub_field('df_dignostik_image');
+                                    echo file_get_contents($image['url']); 
+                                    // $size = 'full';
+                                    ?>
+                                    <!-- <img src="<?=$image['url']?>" alt="<?=$image['alt']?>"> -->
+                                    <!-- echo wp_get_attachment_image($image , $size) ?> -->
+                                    </div>
+                                    <p>
+                                        <?php the_sub_field('df_dignostik_name'); ?>
+                                    </p>
+                                </a>
+                                </div>
+                                <?php
+                            endwhile;
+                        endif;
+                        ?>
 
-                        <!-- 3 -->
-                        <div class="diagn_item">
-                            <div class="img_cont"><img src="images/an_cow.png" alt="ВРХ"></div>
-                            <p>
-                                ВРХ
-                            </p>
-                        </div>
+                        
 
-                        <!-- 4 -->
-                        <div class="diagn_item">
-                            <div class="img_cont"><img src="images/an_sheep.png" alt="ДРХ"></div>
-                            <p>
-                                ДРХ
-                            </p>
-                        </div>
-
-                        <!-- 5 -->
-                        <div class="diagn_item">
-                            <div class="img_cont"><img src="images/an_pig.png" alt="Свині"></div>
-                            <p>
-                                Свині
-                            </p>
-                        </div>
-
-                        <!-- 6 -->
-                        <div class="diagn_item">
-                            <div class="img_cont"><img src="images/an_cat.png" alt="Домашні
-                            тварини"></div>
-                            <p>
-                                Домашні тварини
-                            </p>
-                        </div>
-
-                        <!-- 7 -->
-                        <div class="diagn_item">
-                            <div class="img_cont"><img src="images/an_wheat.png" alt="Зернові"></div>
-                            <p>
-                                Зернові
-                            </p>
-                        </div>
-
-                        <!-- 8 -->
-                        <div class="diagn_item">
-                            <div class="img_cont"><img src="images/an_seed.png" alt="Корми"></div>
-                            <p>
-                                Корми
-                            </p>
-                        </div>
-
-                        <!-- 9 -->
-                        <div class="diagn_item">
-                            <div class="img_cont"><img src="images/an_food.png" alt="Продукти
-                            харчування"></div>
-                            <p>
-                                Продукти
-                                харчування
-                            </p>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -94,10 +53,11 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 d-flex">
                     <h2 class="part__title">
                         НАШІ ПАРТНЕРИ
                     </h2>
+                    <div class="text_block"></div>
                 </div>
             </div>
         </div>
@@ -122,12 +82,14 @@
                     </div>
 
                     <div class="part_desc">
-                        <p>
-                            INNOVATIVE DIAGNOSTICS (ID VET Завдання організації, особливо ж зміцнення 
-                            і розвиток структури вимагають визначення та уточнення напрямків прогресивного розвитку. Таким чином реалізація намічених планових завдань відіграє важливу роль у формуванні нових пропозицій.
-                            Завдання організації, особливо ж зміцнення і розвиток структури вимагають визначення та уточнення напрямків прогресивного розвитку. 
-                        </p>
-
+                    <div class="d-flex">
+                        <div class="text_block showDesk"></div>
+                            <p>
+                                INNOVATIVE DIAGNOSTICS (ID VET Завдання організації, особливо ж зміцнення 
+                                і розвиток структури вимагають визначення та уточнення напрямків прогресивного розвитку. Таким чином реалізація намічених планових завдань відіграє важливу роль у формуванні нових пропозицій.<br><br>
+                                Завдання організації, особливо ж зміцнення і розвиток структури вимагають визначення та уточнення напрямків прогресивного розвитку. 
+                            </p>
+                        </div>
                         <button>
                             детальніше
                         </button>
@@ -139,5 +101,5 @@
 </main>
 
 <?php
-    include_once('static/footer.php')
+    include_once('footer.php')
 ?>

@@ -3,3 +3,8 @@
 /dist/css/styles.min.css.map
 /package-lock.json
 /.vscode
+/wp-config.php
+/wp-content/uploads
+/wp-content/cache/
+/.htaccess
+/.idea

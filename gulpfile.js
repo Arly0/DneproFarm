@@ -2,7 +2,7 @@
 // ---------------------------
 // If doesn't has package.json:
 // npm init
-// npm i --save-dev gulp gulp-load-plugins browser-sync @babel/core @babel/preset-env gulp-babel gulp-sass gulp-sass-glob gulp-autoprefixer gulp-concat gulp-csso gulp-sourcemaps gulp-svg-sprite gulp-svgmin gulp-uglify gulp-rename
+// npm i --save-dev gulp gulp-load-plugins browser-sync @babel/core @babel/preset-env gulp-babel gulp-sass gulp-sass-glob gulp-autoprefixer gulp-concat gulp-csso gulp-sourcemaps gulp-svg-sprite gulp-svgmin gulp-uglify gulp-rename gulp-imagemin
 // ---------------------------
 // If has package.json:
 // npm install
@@ -11,11 +11,12 @@
 var gulp        = require('gulp'),
     plugins     = require('gulp-load-plugins')(),
     browserSync = require('browser-sync').create();
-    // imgCompress = require('gulp-imagemin');
+    imgCompress = require('gulp-imagemin');
 // HTML
 gulp.task('html', function() {
     return gulp.src('src/template/*.php')
         .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('wp-content/themes/default'))
         .pipe(browserSync.stream())
 });
 
@@ -30,11 +31,10 @@ gulp.task('sass', function() {
             cascade: false
         }))
         .pipe(plugins.csso())
-        .pipe(plugins.rename({suffix: '.min', prefix : ''}))
+        .pipe(plugins.rename({extname: '.css', basename : 'style'}))
         .pipe(plugins.sourcemaps.write('.'))
         .pipe(gulp.dest('dist/css'))
-        .pipe(gulp.dest('../catalog/view/theme/default/stylesheet'))
-        .pipe(gulp.dest('../catalog/view/theme/nutrix/stylesheet'))
+        .pipe(gulp.dest('wp-content/themes/default'))
         .pipe(browserSync.stream())
 });
 
@@ -49,21 +49,20 @@ gulp.task('javascripts', function() {
         .pipe(plugins.rename({suffix: '.min', prefix : ''}))
         .pipe(plugins.sourcemaps.write('.'))
         .pipe(gulp.dest('dist/js'))
-        .pipe(gulp.dest('../catalog/view/javascript'))
-        .pipe(gulp.dest('../catalog/view/theme/nutrix/javascript'))
+        .pipe(gulp.dest('wp-content/themes/default/js'))
         .pipe(browserSync.stream())
 });
 
 // Libraries javascript
 gulp.task('libsJS', function() {
     return gulp.src([
-            'src/libs/jquery-3.3.1/jquery-3.3.1.min.js',
+            'src/libs/Vue.js/vue.js',
             'src/libs/**/*.js'
         ])
         .pipe(plugins.concat('libs.min.js'))
         .pipe(plugins.uglify())
         .pipe(gulp.dest('dist/js'))
-        .pipe(gulp.dest('../catalog/view/theme/nutrix/javascript/libs'))
+        .pipe(gulp.dest('wp-content/themes/default/js'))
         .pipe(browserSync.stream())
 });
 
@@ -73,17 +72,16 @@ gulp.task('libsCSS', function() {
         .pipe(plugins.concat('libs.min.css'))
         .pipe(plugins.csso())
         .pipe(gulp.dest('dist/css'))
-        .pipe(gulp.dest('../catalog/view/theme/default/stylesheet'))
-        .pipe(gulp.dest('../catalog/view/theme/nutrix/stylesheet'))
+        .pipe(gulp.dest('wp-content/themes/default/css'))
         .pipe(browserSync.stream())
 });
 
 // images
-// gulp.task('imgmin', function() {
-//     return gulp.src('dist/images/*')
-//     .pipe(imgCompress())
-//     .pipe(gulp.dest('../catalog/view/theme/nutrix/image'))
-//   });
+gulp.task('imgmin', function() {
+    return gulp.src('src/images/*')
+    .pipe(imgCompress())
+    .pipe(gulp.dest('wp-content/themes/default/images'))
+  });
 
 // SVG
 gulp.task('svg', function() {
@@ -120,12 +118,12 @@ gulp.task('watch', function() {
 
 // Default run
 gulp.task('default', gulp.series(
-        gulp.parallel('html', 'sass','javascripts', 'libsJS', 'libsCSS'/*, 'svg',*/),
+        gulp.parallel('html', 'sass','javascripts', 'libsJS', 'libsCSS', 'imgmin'/*, 'svg',*/),
         gulp.parallel('watch', 'server')
     ));
 
 // Default run without server
 gulp.task('no-server', gulp.series(
-        gulp.parallel('html', 'sass','javascripts', 'libsJS', 'libsCSS'/* 'svg',*/),
+        gulp.parallel('html', 'sass','javascripts', 'libsJS', 'libsCSS', 'imgmin'/* 'svg',*/),
         gulp.parallel('watch')
     ));

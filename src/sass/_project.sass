@@ -7,11 +7,86 @@ body
 // ----------------------------- const --------------------------------
 .d-grid
     display: grid
+.showDesk
+    display: block
+.showMob
+    display: none
+.hidden
+    display: none !important
+// ----------------------------- menu --------------------------------
+.darkside
+    // display: none
+    position: fixed
+    top: 0
+    right: 0
+    background: rgba(0,0,0,.2)
+    width: 100%
+    height: 100%
+    z-index: 9
+.menu_mob
+    // display: none
+    position: fixed
+    top: 0
+    right: 0
+    background: #fff
+    width: 90%
+    height: 100%
+    z-index: 10
+    .content
+        padding: 70px 15px 0 15px
+    .logo
+        img
+            width: auto
+            height: 60px
+            margin: 0 auto
+    .input_container
+        margin-top: 30px
+        .menu__field
+            color: $dark
+            line-height: 40px
+            background-color: $gray
+            width: 100%
+            padding: 0px 40px 0 10px
+            border: none
+            border-radius: 5px
+            ::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder
+                color: $placeholder
+        .svg_container
+            margin-left: -30px
+            svg
+                height: 40px
+    .navigation
+        ul
+            text-align: center
+            margin: 20px 0 30px
+        ul, li
+            font-family: $caB
+            font-size: 18px
+            line-height: 36px
+            color: $dGreen
+            width: 100%
+    .contacts
+        .contact
+            justify-content: center
+        .svg_container
+            margin-right: 10px
+        .contact:first-child
+            margin-bottom: 15px
+        
+.menu__close
+    position: absolute
+    top: 30px
+    right: 25px
+    &:hover
+        cursor: pointer
+.menu__close, .menu__close img
+    width: 24px
+    height: 24px
 // ----------------------------- header --------------------------------
 .back-img
     width: 100%
     height: 670px
-    background: #fff url("../images/banner.jpg")
+    background: #fff url("images/banner.jpg")
     background-repeat: no-repeat
     background-position: center center
     background-size: 100% auto
@@ -69,6 +144,28 @@ body
                 height: auto
                 
                 justify-content: space-between
+.language
+    position: relative
+    margin-left: 30px
+    .lang__select
+        img
+            width: 11px 
+            height: 7px
+            margin: 4px 0 0 4px
+        &:hover
+            cursor: pointer
+    .lang__block
+        position: absolute
+        top: 16px
+        left: 0
+        div
+            margin-top: 5px
+            padding-bottom: 3px
+            border-bottom: 1px solid $dGreen
+            transition: .2s
+            &:hover
+                cursor: pointer
+                color: $green
 
 // ----------------------------- slider --------------------------------
 .slider
@@ -81,8 +178,8 @@ body
         width: 58%
     .slider__text
         @include Tdefault
-        width: 30%
-        margin-top: 50px
+        width: 21%
+        margin-top: 30px
     .slider__btn
         @include button
         color: $dGreen
@@ -130,15 +227,22 @@ body
         &:hover
             p
                 color: $wGreen
+            .img_cont svg
+                fill: $wGreen !important
 
 // ----------------------------- common -------------------------------
 .diagn__title, .part__title
     @include Ttitle
     text-align: left
+.text_block
+    background: $wGreen
+    width: 5px
+    height: 20px
+    margin: 5px 0 0 12px
 // ----------------------------- partners -------------------------------
 .partners
     background: #fff
-    background: #fff url("../images/partners.png")
+    background: #fff url("images/partners.png")
     background-repeat: no-repeat
     background-position: top left
     background-size: auto 100%
@@ -151,13 +255,13 @@ body
         margin-top: 4px
 
         .part__company:nth-child(1)
-            background: rgba(248, 252, 250, .7) url("../images/part_1.png")
+            background: rgba(248, 252, 250, .7) url("images/part_1.png")
         .part__company:nth-child(2)
-            background: rgba(248, 252, 250, .7) url("../images/part_2.png")
+            background: rgba(248, 252, 250, .7) url("images/part_2.png")
         .part__company:nth-child(3)
-            background: rgba(248, 252, 250, .7) url("../images/part_3.png")
+            background: rgba(248, 252, 250, .7) url("images/part_3.png")
         .part__company:nth-child(4)
-            background: rgba(248, 252, 250, .7) url("../images/part_4.png")
+            background: rgba(248, 252, 250, .7) url("images/part_4.png")
         .part__company
             width: 100%
             height: 65px
@@ -166,7 +270,7 @@ body
             background-size: auto auto !important
         .company_select
             background-color: rgba(248, 252, 250, 1) !important
-            border-bottom: 3px solid $green
+            border-bottom: 3px solid $wGreen
     .part_desc
         background: rgba(248, 252, 250, .7)
         width: 66.6%
@@ -178,15 +282,23 @@ body
             margin-bottom: 25px
         button
             @include button
+            margin-left: 14px
+        
+        .text_block
+            margin-left: 0px
+            margin-right: 10px
+            width: 14px
+            height: 18px
         
 // ----------------------------- footer -------------------------------
 .footer
-    background: $dGreen url("../images/footer_bigLogo.png")
+    background: $dGreen url("images/footer_bigLogo.png")
     background-repeat: no-repeat
     background-position: top left 3%
     color: #fff
     width: 100%
     padding: 40px 0 60px
+    margin-top: 50px
 .footer_copy
     width: 100%
     height: auto
@@ -242,8 +354,192 @@ body
         font-size: 12px
         color: #fff
         text-transform: uppercase
-        background: $wGreen
+        background: #3baa35
         margin-left: 10px
         padding: 0 20px
         border: none
         border-radius: 3px
+
+
+
+@media (max-width: 1100px)
+    .back-img
+        background-size: auto 100%
+    // ------------------------- partners ----------------------------
+    .partners
+        background-size: 100% auto
+    .partners .part_desc
+        width: 86%
+        margin-top: 30px
+    // ------------------------- slider ----------------------------
+    .slider .slider__title
+        width: 90%
+    // ------------------------- diagn ----------------------------
+    .diagn_list
+        grid-template-columns: repeat(3, 1fr) 
+        grid-row-gap: 20px
+    .diagn
+        padding: 50px 0 70px
+    // ------------------------- footer ----------------------------
+    .footer
+        margin-top: -60px
+    .footer_social .phones, .footer_send .footer__field
+        width: 50%
+
+
+
+
+
+
+@media (max-width: 900px)
+    // ------------------------- const ----------------------------
+    .showDesk
+        display: none
+    .showMob
+        display: block
+
+    // ------------------------- header ----------------------------
+    .header
+        background: #f7f7f7
+    
+    .header .logo img
+        width: 85px
+        height: auto
+        margin: 0 auto
+    .burger
+        position: absolute
+        top: 0 
+        bottom: 0
+        right: 25px
+        margin: auto 0
+    .burger, .burger img
+        width: 24px
+        height: 24px
+    .header .col-lg-2
+        position: relative
+    .back-img
+        background-position: top left 20%
+    .language
+        margin: 23px 0px 0 0
+        .lang__select
+            justify-content: center
+        .lang__block
+            margin-left: 50%
+            transform: translate(-50%)
+    
+    // ------------------------- slider ----------------------------
+    .slider
+        padding-top: 50px
+    .slider .slider__title
+        font-size: 50px
+    .slider .slider__text
+        width: 40%
+
+    // ------------------------- partners ----------------------------
+    .partners
+        overflow: hidden
+        background: #fff url(images/partners_mob.png)
+        background-size: 100% auto
+        background-repeat: no-repeat
+        height: 650px
+    .partners .part_desc
+        width: 70%
+
+    // ------------------------- footer ----------------------------
+    .footer
+        background-image: url("images/footer_bigLogo_mob.png")
+        background-position: top right -20em
+
+        margin-top: 50px
+        .phones
+            width: 100%
+        .contacts
+            display: flex
+            .contact
+                margin-right: 20px
+        .social
+            margin-top: 30px
+            img
+                margin-top: 20px
+
+    .footer_info .info a:first-child
+        width: 40%
+    .footer_copy p
+        margin-top: 25px
+
+
+
+
+@media (max-width: 500px)
+    // ------------------------- slider ----------------------------
+    .back-img
+        background: none
+        height: auto
+    .slider
+        background-image: url('images/banner_mob.png')
+        background-repeat: no-repeat
+        background-position: top -100% left 6%
+        background-size: auto 92%
+        padding-top: 50px
+    .slider .slider__title
+        font-size: 30px
+        line-height: 36px
+        width: 70%
+    .slider .slider__text
+        line-height: 24px
+        width: 65%
+    .slider .slider-nav
+        margin-bottom: 30px
+
+    // ------------------------- partners ----------------------------
+    .partners
+        background-size: auto 100%
+        background-position: center left 40%
+        height: 900px
+    .partners .part_desc
+        width: 100%
+        padding: 20px 10px 30px 10px
+    .partners .parts
+        grid-template-columns: repeat(4,105px)
+        grid-column-gap: 10px
+        margin-top: 0px
+    .partners .parts .part__company
+        background-size: 60% auto !important
+    .partners .part_desc button
+        margin-left: 0px
+    .partners .part_desc p
+        font-size: 14px
+
+    // ------------------------- footer ----------------------------
+    .footer
+        .phones
+            margin-top: 20px
+    .footer_send .footer__sbm
+        margin-left: 0px
+        border-top-left-radius: 0px
+        border-bottom-left-radius: 0px
+    .footer_send .footer__field
+        width: 100%
+        border-top-right-radius: 0px
+        border-bottom-right-radius: 0px
+
+    // ------------------------- common ----------------------------
+    .diagn__title, .part__title
+        font-size: 24px
+    .text_block
+        margin-top: 3px
+        height: 18px
+
+    // ------------------------- diagn ----------------------------
+    .diagn
+        padding-top: 0px
+    .diagn_list .diagn_item img
+        width: 60px
+        height: auto
+    .diagn_list .diagn_item:first-child img
+        width: 45px
+
+@media (max-width: 380px)
+    // ------------------------- slider ----------------------------
+    .slider .slider__text
+        width: 85%
