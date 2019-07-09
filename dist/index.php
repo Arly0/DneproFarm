@@ -66,17 +66,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="parts d-grid">
-                        <div class="part__company">
+                <div class="parts slick_company">
+                        <div class="part__company comp_first">
 
                         </div>
-                        <div class="part__company company_select">
+                        <div class="part__company comp_sec">
                             
                         </div>
-                        <div class="part__company">
+                        <div class="part__company comp_third">
                             
                         </div>
-                        <div class="part__company">
+                        <div class="part__company comp_fourth">
+                            
+                        </div>
+                        <div class="part__company comp_fifth">
                             
                         </div>
                     </div>

@@ -56,7 +56,7 @@
 
                                     </div>
                                     <div class="phone">
-                                        <a href="tel:(056)372-57-54"> (056) 372-57-54</a>
+                                        <a href="tel:<?php the_field('info_tel_1') ?>"><?php the_field('info_tel_1') ?></a>
                                     </div>
                                 </div>
 
@@ -74,7 +74,12 @@
 
                                     </div>
                                     <div class="phone">
-                                        <a href="tel:(095)792-20-23"> (095) 792-20-23</a>
+                                        <?php
+                                        if(get_field('info_tel_2')){
+                                        ?>
+                                        <a href="tel:<?php the_field('info_tel_2') ?>"> <?php the_field('info_tel_2') ?></a>
+                                        <?php } ?>
+                                        
                                     </div>
                                 </div>
                                 </div>
@@ -115,8 +120,62 @@
         </div>
     </footer>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/vue.js"></script>
     <script src="<?php echo get_template_directory_uri() ?>/js/libs.min.js"></script>
     <script src="js/slicky.min.js"></script>
     <script src="js/scripts.min.js"></script>
+
+    <?php
+    if(is_front_page()){
+
+        // * получаем значения трех изображений из админки и подставляем их в background
+            $rows = get_field('df_slider');
+            $row = $rows[0];
+            $first_image = $row['df_slider_image'];
+
+            $row = $rows[1];
+            $second_image = $row['df_slider_image'];
+
+            $row = $rows[2];
+            $third_image = $row['df_slider_image'];
+
+            $image = wp_get_attachment_image_src($first_image, 'full')
+        ?>
+
+        <script>
+            $(document).ready(function(){
+                $('.partners').find('.slick-active :eq(2)').addClass('slick-center');
+
+                $('.slick_company').mouseup(function(){
+                    $('.slick-center').removeClass('slick-center');
+                    $('.partners').find('.slick-active :eq(2)').addClass('slick-center');
+                });
+
+                $('.slick-dots button').focusin(function(){
+                    $('.slick-center').removeClass('slick-center');
+                    $('.partners').find('.slick-active :eq(2)').addClass('slick-center');
+                });
+                
+
+                $('.back-img').attr('style', 'background: url(<?php echo $first_image["url"] ?>)');
+                $('.slick-dots button').click(function(){
+                    let i = $('.slick-dots button').index($(this));
+                    switch(i){
+                        case 0:
+                            $('.back-img').attr('style', 'background: url(<?php echo $first_image["url"] ?>)');
+                            break;
+                        case 1:
+                            $('.back-img').attr('style', 'background: url(<?php echo $second_image["url"] ?>)');
+                            break;
+                        case 2:
+                            $('.back-img').attr('style', 'background: url(<?php echo $third_image["url"] ?>)');
+                            break;
+                    }
+                });
+            });
+        </script>
+    <?php
+    }
+    ?>
 </body>
 </html>

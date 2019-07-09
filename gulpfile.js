@@ -56,7 +56,6 @@ gulp.task('javascripts', function() {
 // Libraries javascript
 gulp.task('libsJS', function() {
     return gulp.src([
-            'src/libs/Vue.js/vue.js',
             'src/libs/**/*.js'
         ])
         .pipe(plugins.concat('libs.min.js'))

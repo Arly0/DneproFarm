@@ -68,7 +68,7 @@
 
                                         </div>
                                         <div class="phone">
-                                            <a href="tel:(056)372-57-54"> (056) 372-57-54</a>
+                                        <a href="tel:<?php the_field('info_tel_1') ?>"><?php the_field('info_tel_1') ?></a>
                                         </div>
                                     </div>
 
@@ -86,7 +86,11 @@
 
                                         </div>
                                         <div class="phone">
-                                            <a href="tel:(095)792-20-23"> (095) 792-20-23</a>
+                                        <?php
+                                        if(get_field('info_tel_2')){
+                                        ?>
+                                        <a href="tel:<?php the_field('info_tel_2') ?>"> <?php the_field('info_tel_2') ?></a>
+                                        <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +118,7 @@
 
 
 
-<div class="back-img">
+
     <header class="header" id="header">
         <div class="container">
             <div class="row">
@@ -162,7 +166,7 @@
 
                                     </div>
                                     <div class="phone">
-                                        <a href="tel:(056)372-57-54"> (056) 372-57-54</a>
+                                    <a href="tel:<?php the_field('info_tel_1') ?>"><?php the_field('info_tel_1') ?></a>
                                     </div>
                                 </div>
 
@@ -180,7 +184,11 @@
 
                                     </div>
                                     <div class="phone">
-                                        <a href="tel:(095)792-20-23"> (095) 792-20-23</a>
+                                    <?php
+                                        if(get_field('info_tel_2')){
+                                        ?>
+                                        <a href="tel:<?php the_field('info_tel_2') ?>"> <?php the_field('info_tel_2') ?></a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -221,25 +229,39 @@
         </div>
     </header>
 
+    
+    <div class="back-img">
+  
     <section class="slider" id="slider">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="slider__title">
-                        Лідер на ветеринарному 
-                        ринку України
-                    </h1>
+                    <div class="slick-slider common-slick">
+                        <?php
+                            if(have_rows('df_slider')):
+                                while(have_rows('df_slider')) : the_row(); ?>
+                            <div>
+                                <h1 class="slider__title">
+                                    <?php the_sub_field('df_slider_title') ?>
+                                </h1>
+    
+                                <p class="slider__text">
+                                    <?php the_sub_field('df_slider_subtitle') ?>
+                                </p>
+    
+                                <a href="<?php the_sub_field('df_slider_link') ?>"><button class="slider__btn">
+                                    детальніше
+                                </button></a>
+                            </div>
+                            <?php
+                            endwhile;
+                        endif;
+                        ?>
+                        
 
-                    <p class="slider__text">
-                        Наш продукт являється одним з найкращих 
-                        на просторах рідного краю.
-                    </p>
-
-                    <button class="slider__btn">
-                        детальніше
-                    </button>
-
-                    <div class="slider-nav d-flex">
+                        
+                    </div>
+                    <!-- <div class="slider-nav d-flex">
                         <div class="slider__pages_active">
 
                         </div>
@@ -251,10 +273,12 @@
                         <div class="slider__pages">
                             
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </section>
+</div>
+</div>
 </div>
 </div>
